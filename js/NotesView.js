@@ -9,19 +9,19 @@ export default class NotesView {
 
     this.root.innerHTML = `
         <div class="notes__sidebar">
-        <div class="notes__logo">NOTE APP</div>
-        <div class="notes__list">
-            <div class="notes__list-item">
-                <div class="notes__small-title">New Note</div>
-                <div class="notes_small-body">this is my first note</div>
-                <div class="notes__small-updated">Monday 1:30pm</div>
+            <div class="notes__logo">NOTE APP</div>
+            <div class="notes__list">
+                <div class="notes__list-item">
+                    <div class="notes__small-title"></div>
+                    <div class="notes_small-body"></div>
+                    <div class="notes__small-updated"></div>
+                </div>
             </div>
-        </div>
-        <button class="notes__add">ADD NOTE</button>
+            <button class="notes__add">ADD NOTE</button>
         </div>
         <div class="notes__preview">
-        <input type="text" class="notes__title" placeholder="note title">
-        <textarea name="" class="notes__body">take some note</textarea>
+            <input type="text" class="notes__title" placeholder="">
+            <textarea name="" class="notes__body"></textarea>
         </div>`;
 
     const addNoteBtn = this.root.querySelector('.notes__add');
@@ -104,7 +104,7 @@ export default class NotesView {
           .querySelector(`.notes__list-item[data-note-id="${note.id}"]`)
           .classList.add("notes__list-item--selected");
       }
-      
+
     updateNotePreviewVisibility(visible) {
         this.root.querySelector(".notes__preview").style.visibility = visible
           ? "visible"

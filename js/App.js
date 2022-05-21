@@ -30,8 +30,8 @@ export default class App {
         return {
             onNoteAdd: () => {
                 const newNote = {
-                    title : 'new note',
-                    body : 'take some note'
+                    title : 'عنوان',
+                    body : 'متن شما ...'
                 }
                 NotesAPI.saveNote(newNote);
                 this._refreshNotes();
