@@ -6,6 +6,7 @@ export default class NotesView {
     this.onNoteEdit = onNoteEdit;
     this.onNoteSelect = onNoteSelect;
     this.onNoteDelete = onNoteDelete;
+
     this.root.innerHTML = `
         <div class="notes__sidebar">
         <div class="notes__logo">NOTE APP</div>
@@ -22,9 +23,11 @@ export default class NotesView {
         <input type="text" class="notes__title" placeholder="note title">
         <textarea name="" class="notes__body">take some note</textarea>
         </div>`;
+
     const addNoteBtn = this.root.querySelector('.notes__add');
     const inputTitle = this.root.querySelector('.notes__title');
     const inputBody = this.root.querySelector('.notes__body');
+
         addNoteBtn.addEventListener('click' ,() => {
             this.onNoteAdd();
         });
@@ -89,17 +92,22 @@ export default class NotesView {
     }
 
     updateActiveNote(note) {
-        this.root.querySelector('.notes__title').value = note.title;
-        this.root.querySelector('.note__body').value = note.body;
-        this.root.querySelectorAll('.notes__list-item').forEach(item => item.classList
-            .remove('notes__list-item--selected'));
-        this.root.querySelector(`.notes__list-item[data-note-id='${note.id}']`)
-            .classList.add('notes__list-item--selected');
-    }
+        this.root.querySelector(".notes__title").value = note.title;
+        this.root.querySelector(".notes__body").value = note.body;
     
+        //  add selected class :
+        this.root.querySelectorAll(".notes__list-item").forEach((item) => {
+          item.classList.remove("notes__list-item--selected");
+        });
+    
+        this.root
+          .querySelector(`.notes__list-item[data-note-id="${note.id}"]`)
+          .classList.add("notes__list-item--selected");
+      }
+      
     updateNotePreviewVisibility(visible) {
-        this.root.querySelector('.notes__preview').style.visibility = visible 
-        ? 'visible' 
-        : 'hidden';
+        this.root.querySelector(".notes__preview").style.visibility = visible
+          ? "visible"
+          : "hidden";
     }
 }
