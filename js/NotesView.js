@@ -36,6 +36,7 @@ export default class NotesView {
 
             })
         })
+        this.updateNotePreviewVisibility(false);
     }
     
     _createListItemHTML(id, title, body, updated) {
@@ -67,7 +68,7 @@ export default class NotesView {
         const notesContainer = this.root.querySelector('.notes__list');
         notesContainer.innerHTML = '';
         let notesList = '';
-        for (note of notes) {
+        for (let note of notes) {
             const {id,title,body,updated} = note;
             const html = this._createListItemHTML(id, title , body , updated);
             notesList += html;
@@ -85,5 +86,20 @@ export default class NotesView {
                 this.onNoteDelete(item.dataset.noteId)
             })
         })
+    }
+
+    updateActiveNote(note) {
+        this.root.querySelector('.notes__title').value = note.title;
+        this.root.querySelector('.note__body').value = note.body;
+        this.root.querySelectorAll('.notes__list-item').forEach(item => item.classList
+            .remove('notes__list-item--selected'));
+        this.root.querySelector(`.notes__list-item[data-note-id='${note.id}']`)
+            .classList.add('notes__list-item--selected');
+    }
+    
+    updateNotePreviewVisibility(visible) {
+        this.root.querySelector('.notes__preview').style.visibility = visible 
+        ? 'visible' 
+        : 'hidden';
     }
 }
